@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block start %}
+
+
+<h1>Login page</h1>
+<form class = "col-6 mx-auto card  p-3 shadow-lg" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    {% if messages %}
+    <div class="alert alert-primary" role="alert">
+      {% for message in messages %}
+      {{ message }}
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Username</label>
+      <input  name="user_name"   type="text" class="form-control" >
+    </div>
+
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input name="user_password" type="password" class="form-control">
+      </div>
+    
+    <p>Donot have an account <a href= 'register'>Click here to register</a></p>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+{% endblock %}

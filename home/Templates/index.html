@@ -1,0 +1,44 @@
+
+{% extends  "base.html" %}
+{%block start%}
+    <h1>This is a html</h1>
+    <h2> this is h2 in html</h2>
+    
+
+    <table class = "containeer">
+        <tr>
+          <th>Sl.NO</th>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Adult</th>
+        </tr>
+        {%for i in peoples %}
+        <tr>
+            <td>{{forloop.counter}} </td>
+            <td> {{i.name}}</td>
+            <td>{{i.age}} </td>
+            <td>
+
+                {% if i.age >= 21 %}
+                 👍
+                {% else %}
+                👎
+                {%endif%}
+            </td>
+        </tr>
+        {% endfor %}
+      </table>
+
+      <p>
+      {% if 'a' in veg %}
+        Yes avaialbale
+      {%else %}
+        Not avaialbale
+      {%endif%}
+    </p>
+
+
+    <a href = "/contact" >contact</a>
+    <a href="/about" >About </a>
+
+{%endblock%}
