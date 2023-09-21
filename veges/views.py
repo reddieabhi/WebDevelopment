@@ -4,10 +4,12 @@ from .models import *
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
 
+@login_required(login_url="/login_page")
 def receipes(request):
     if request.method == "POST":
         data = request.POST
@@ -38,6 +40,7 @@ def receipes(request):
 
     return render(request,"receipes.html",context)
 
+@login_required(login_url="/login_page  ")
 def delete_reciepe(request,id):
     print(id)
     queryset = Receipe.objects.get(id=id)
@@ -45,6 +48,7 @@ def delete_reciepe(request,id):
 
     return redirect('/receipes')
 
+@login_required(login_url="/login_page  ")
 def update_receipe(request,id):
     queryset = Receipe.objects.get(id=id)
     if request.method == "POST":
