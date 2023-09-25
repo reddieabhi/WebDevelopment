@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block start %}
+
+
+<h1>{{name}}</h1>
+<h4>Rank:</h4>
+<h4>Total:{{total}} </h4>
+
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">subject_name</th>
+        <th scope="col">Subject_marks</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for row in my_marks %}
+      <tr>
+        <th scope="row">{{forloop.counter}}</th>
+        <td><b> {{row.subject.subject_name}} </b> </td>
+        <td>{{row.marks}}</td>
+     
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+
+
+{% endblock %}
