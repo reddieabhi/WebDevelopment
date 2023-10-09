@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block start %}
+
+<h1> This is sending email page</h1>
+
+
+<div class="containeer" mt-5>
+    <form class = "col-6 mx-auto card  p-3 shadow-lg" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h2> Send mail </h2>
+        <hr>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Enter your subject here</label>
+          <input name="subject"   type="text" class="form-control" >
+        </div>
+
+        
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Enter your message here </label>
+          <textarea name = "message" class = "form-control"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-success">Click here to send mail </button>
+
+    </form>
+</div>
+
+{% endblock %}

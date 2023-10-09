@@ -67,3 +67,5 @@ class SubjectMarks(models.Model):
     
     class Meta:
         unique_together = ['student','subject']
+
+

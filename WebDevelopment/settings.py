@@ -141,3 +141,12 @@ MEDIA_URL = "/media/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
+
+from django.core.mail import backends
+from django.core.mail.backends import smtp
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587  
+EMAIL_USE_TLS = True 
+EMAIL_HOST_USER = 'djangomailabhi@gmail.com' 
+EMAIL_HOST_PASSWORD = 'qqbutpkhdixpomos'

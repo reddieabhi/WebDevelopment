@@ -7,6 +7,7 @@ from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.db.models import Q
+from django.db.models import Sum
 
 # Create your views here.
 
@@ -127,7 +128,7 @@ def register(request):
 
 def get_students(request):
     queryset = Student.objects.all()
-
+    
     if request.GET.get('search'):
         search = request.GET.get('search')
         queryset = queryset.filter(
@@ -152,5 +153,13 @@ def view_student(request,id):
     for i in query_set:
         total += i.marks
     print(total)
-    print(query_set[0].student)
-    return render(request,"report/student_marks.html",{'my_marks' : query_set,'total':total,'name':query_set[0].student})
+    ranks = Student.objects.annotate(marks=Sum('student_marks__marks')).order_by('-marks')   
+    current_rank = -1
+    temp = 0
+    print(ranks[0].student_id)
+    for rank in ranks:
+        temp += 1
+        if str(rank.student_id) == id:
+            current_rank = temp
+    return render(request,"report/student_marks.html",{'my_marks' : query_set,'total':total,'name':query_set[0].student,'rank':current_rank})
+
