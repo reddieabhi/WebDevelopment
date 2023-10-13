@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  </head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>People</title>
+    <style>
+        table, th, td {
+  border: 1px solid black;
+}
+    </style>
+</head>
+<body>
+
+    {{ people }}
+    <form class = "col-6 mx-auto card  p-3 shadow-lg" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h2> Add your Name here</h2>
+        <hr>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label"> Firstname</label>
+          <input name="fname" type="text" class="form-control" >
+        </div>
+
+        
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Lastname</label>
+            <input name = "lname" type="text" class="form-control" >
+          </div>
+        
+        <button type="submit" class="btn btn-success">Click here to add your name</button>
+      </form>
+    
+
+
+      <table class="table mt-5" >
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">first Name</th>
+            <th scope="col">Last Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for peo in people %}
+          <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <td>{{ peo.fname }}</td>
+            <td>{{ peo.lname }}</td>
+          </tr>
+
+          {% endfor %}
+
+        </tbody>
+      </table>
+
+</body>
+</html>
